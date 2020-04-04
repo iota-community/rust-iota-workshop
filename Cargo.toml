@@ -1,5 +1,6 @@
 [workspace]
 
 members = [
-    "get-node-info"
+    "get-node-info",
+    "send-data"
 ]
