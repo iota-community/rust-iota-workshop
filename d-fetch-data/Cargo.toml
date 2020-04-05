@@ -1,5 +1,5 @@
 [package]
-name = "c-fetch-data"
+name = "d-fetch-data"
 version = "0.1.0"
 authors = ["rckey <private.richardk@gmail.com>"]
 edition = "2018"

@@ -5,15 +5,16 @@ fn main() {
     let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
 
     let address =
-        "999999999999999999999999999999999999999999999999999999999999999999999999999999999";
+        "PUEOTSEITFEV9WCWBTSIZM9NKRGJEIMXTULBACGFRQK9IMGICLBKW9TTEVSDQMGWKBXPVC9MMCXWMNPDA";
 
     // Search by address
-    let transaction = api
+    let find_transactions_response = api
         .find_transactions(FindTransactionsOptions {
             addresses: vec![address.to_string()],
             ..FindTransactionsOptions::default()
         })
         .unwrap();
 
-    println!("{:?}", transaction);
+    let hashes = find_transactions_response.hashes();
+    println!("{:?}", hashes);
 }
