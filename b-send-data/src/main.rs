@@ -4,6 +4,8 @@ use iota_lib_rs::prelude::*;
 use iota_model::Transfer;
 
 fn main() {
+    let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
+
     let trytes =
         "999999999999999999999999999999999999999999999999999999999999999999999999999999999";
     let message = trytes_converter::to_trytes("Hello World").unwrap();
@@ -13,7 +15,6 @@ fn main() {
         ..Transfer::default()
     };
 
-    let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
     let transaction = api
         .send_transfers(
             transfer,
