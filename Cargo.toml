@@ -2,5 +2,6 @@
 
 members = [
     "1-get-node-info",
-    "2-send-data"
+    "2-send-data",
+    "3-fetch-data",
 ]
