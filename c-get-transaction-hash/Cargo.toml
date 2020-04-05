@@ -1,5 +1,5 @@
 [package]
-name = "c-fetch-address"
+name = "c-get-transaction-hash"
 version = "0.1.0"
 authors = ["rckey <private.richardk@gmail.com>"]
 edition = "2018"

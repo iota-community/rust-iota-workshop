@@ -2,7 +2,7 @@
 members = [
     "a-get-node-info",
     "b-send-data",
-    "c-fetch-address",
+    "c-get-transaction-hash",
     "d-fetch-data",
     "e-create-address",
     "f-send-tokens",
