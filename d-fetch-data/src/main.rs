@@ -6,9 +6,8 @@ fn main() {
     let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
 
     let address =
-        "PUEOTSEITFEV9WCWBTSIZM9NKRGJEIMXTULBACGFRQK9IMGICLBKW9TTEVSDQMGWKBXPVC9MMCXWMNPDA";
+        "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR";
 
-    // Search by address
     let find_transactions_response = api
         .find_transactions(FindTransactionsOptions {
             addresses: vec![address.to_string()],

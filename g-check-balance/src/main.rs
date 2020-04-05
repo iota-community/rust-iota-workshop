@@ -1,4 +1,4 @@
-use iota_client::options::FindTransactionsOptions;
+use iota_client::options::GetBalancesOptions;
 use iota_lib_rs::prelude::*;
 
 fn main() {
@@ -7,13 +7,14 @@ fn main() {
     let address =
         "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR";
 
-    let find_transactions_response = api
-        .find_transactions(FindTransactionsOptions {
+    let get_balances_response = api
+        .get_balances(GetBalancesOptions {
             addresses: vec![address.to_string()],
-            ..FindTransactionsOptions::default()
+            ..GetBalancesOptions::default()
         })
         .unwrap();
 
-    let hashes = find_transactions_response.hashes();
-    println!("{:?}", hashes);
+    if let Some(balance) = get_balances_response.balances() {
+        println!("balance: {:?}", balance[0]);
+    }
 }

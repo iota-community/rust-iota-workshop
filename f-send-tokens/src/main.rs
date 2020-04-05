@@ -1,28 +1,27 @@
 use iota_client::options::SendTransferOptions;
+use iota_conversion::trytes_converter;
 use iota_lib_rs::prelude::*;
 use iota_model::Transfer;
-use iota_conversion::trytes_converter;
 
 fn main() {
-    let trytes =
-        "HELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDD";
-    let message = trytes_converter::to_trytes("Hello World with Value").unwrap();
+    let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
+
+    let seed = "SEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDS";
+    let address =
+        "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR";
+    let my_message = trytes_converter::to_trytes("Hello World with Value").unwrap();
+
     let transfer = Transfer {
-        address: trytes.to_string(),
+        address: address.to_string(),
         value: 1,
-        // Don't need to specify the field 
-        // because the field and variable
-        // have the same name
-        message,
-        // Populate the rest of the fields with default values
+        message: my_message,
         ..Transfer::default()
     };
 
-    let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
-    let tx = api
+    let transaction = api
         .send_transfers(
             transfer,
-            &trytes,
+            &seed,
             SendTransferOptions {
                 local_pow: true,
                 threads: 2,
@@ -30,5 +29,6 @@ fn main() {
             },
         )
         .unwrap();
-    println!("{:?}", tx);
+
+    println!("{:?}", transaction);
 }

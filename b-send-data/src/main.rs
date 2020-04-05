@@ -6,19 +6,20 @@ use iota_model::Transfer;
 fn main() {
     let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
 
-    let trytes =
-        "999999999999999999999999999999999999999999999999999999999999999999999999999999999";
-    let message = trytes_converter::to_trytes("Hello World").unwrap();
+    let seed = "SEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDS";
+    let address =
+        "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR";
+    let my_message = trytes_converter::to_trytes("Hello World").unwrap();
     let transfer = Transfer {
-        address: trytes.to_string(),
-        message: message,
+        address: address.to_string(),
+        message: my_message,
         ..Transfer::default()
     };
 
     let transaction = api
         .send_transfers(
             transfer,
-            &trytes,
+            &seed,
             SendTransferOptions {
                 local_pow: true,
                 threads: 2,
@@ -26,7 +27,6 @@ fn main() {
             },
         )
         .unwrap();
-
 
     println!("{:?}", transaction);
 }
