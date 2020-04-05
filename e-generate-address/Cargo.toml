@@ -1,5 +1,5 @@
 [package]
-name = "e-create-address"
+name = "e-generate-address"
 version = "0.1.0"
 authors = ["huhn <huhn@einfachIOTA.de>"]
 edition = "2018"

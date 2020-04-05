@@ -1,12 +1,7 @@
-#c-fetch-address
+#c-get-transaction-hash
 ## Run the example
 
-Compile the code
+Run
 ```bash
-cargo run --bin c-fetch-address
-```
-
-Run it
-```bash
-./target/debug/c-fetch-address
+cargo run --bin c-get-transaction-hash
 ```

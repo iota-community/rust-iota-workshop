@@ -4,7 +4,7 @@ members = [
     "b-send-data",
     "c-get-transaction-hash",
     "d-fetch-data",
-    "e-create-address",
+    "e-generate-address",
     "f-send-tokens",
     "g-check-balance"
 ]

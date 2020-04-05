@@ -1,12 +1,7 @@
 #b-send-data
 ## Run the example
 
-Compile the code
+Run
 ```bash
 cargo run --bin b-send-data
-```
-
-Run it
-```bash
-./target/debug/b-send-data
 ```
