@@ -1,6 +1,7 @@
 use iota_client::options::FindTransactionsOptions;
 use iota_conversion::trytes_converter;
 use iota_lib_rs::prelude::*;
+use iota_model::Transaction;
 
 fn main() {
     let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
@@ -19,11 +20,11 @@ fn main() {
         match api.get_trytes(&transactions) {
             Ok(trytes_array) => {
                 let trytes = &trytes_array.trytes().as_ref().unwrap()[0];
-                let message = trytes_converter::to_string(&trytes[..2186]);
-                match message {
-                    Ok(message) => println!("message: {}", message),
-                    _ => println!("Couldn't convert trytes to string."),
-                };
+                let transaction: Transaction = trytes.parse().unwrap();
+                let message =
+                    trytes_converter::to_string(&transaction.signature_fragments[..2186]).unwrap();
+
+                println!("message: {}", message);
             }
             _ => println!("Couldn't get transaction data from hash."),
         };
