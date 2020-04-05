@@ -13,6 +13,7 @@ cd iota-rust-workshop
 https://www.rust-lang.org/tools/install
 
 ### Run first example
+All commands can be runned in the root directory (iota-rust-workshop)
 
 Compile the code
 ```bash
