@@ -4,5 +4,6 @@ members = [
     "b-send-data",
     "c-fetch-address",
     "d-fetch-data",
-    "e-create-address"
+    "e-create-address",
+    "f-send-tokens"
 ]
