@@ -18,8 +18,9 @@ fn main() {
 
     if let Some(transactions) = find_transactions_response.hashes() {
         match api.get_trytes(&transactions) {
-            Ok(trytes_array) => {
-                let trytes = &trytes_array.trytes().as_ref().unwrap()[0];
+            Ok(get_trytes_response) => {
+                let trytes_array = &get_trytes_response.trytes().as_ref().unwrap();
+                let trytes = &trytes_array[trytes_array.len() - 1];
                 let transaction: Transaction = trytes.parse().unwrap();
                 let message =
                     trytes_converter::to_string(&transaction.signature_fragments[..2186]).unwrap();
