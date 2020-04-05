@@ -3,5 +3,5 @@
 
 Run
 ```bash
-cargo run --bin g-ckeck-balance
+cargo run --bin g-check-balance
 ```

@@ -3,4 +3,5 @@
 
 Run
 ```bash
-cargo run --bin a-get-node-info```
+cargo run --bin a-get-node-info
+```
