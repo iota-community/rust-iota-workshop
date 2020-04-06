@@ -14,6 +14,6 @@ fn main() {
         })
         .unwrap();
 
-    let hashes = find_transactions_response.hashes();
-    println!("{:?}", hashes);
+    let hashes = find_transactions_response.hashes().as_ref().unwrap();
+    println!("hashes: {:?}", hashes);
 }

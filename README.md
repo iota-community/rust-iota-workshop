@@ -30,10 +30,10 @@ You should receive a message including the statistics of an IOTA node. This mean
 ### Examples included
 Here you can find all the examples:
 
-- [get node info](./a-get-node-info/README.md)
-- [send data](./b-send-data/README.md)
+- [get-node info](./a-get-node-info/README.md)
+- [send-data](./b-send-data/README.md)
 - [get-transaction-hash](./c-get-transaction-hash/README.md)
-- [fetch data](./d-fetch-data/README.md)
+- [fetch-data](./d-fetch-data/README.md)
 - [create-address](./e-generate-address/README.md)
 - [send-tokens](./f-send-tokens/README.md)
 - [check-balance](./g-check-balance/README.md)

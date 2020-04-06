@@ -10,6 +10,7 @@ fn main() {
     let address =
         "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR";
     let my_message = trytes_converter::to_trytes("Hello World").unwrap();
+
     let transfer = Transfer {
         address: address.to_string(),
         message: my_message,

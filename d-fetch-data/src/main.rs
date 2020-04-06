@@ -23,11 +23,11 @@ fn main() {
                 let trytes = &trytes_array[trytes_array.len() - 1];
                 let transaction: Transaction = trytes.parse().unwrap();
                 let message =
-                    trytes_converter::to_string(&transaction.signature_fragments[..2186]).unwrap();
+                    trytes_converter::to_string(&transaction.signature_fragments[..]).unwrap();
 
                 println!("message: {}", message);
             }
-            _ => println!("Couldn't get transaction data from hash."),
+            Err(err) => eprintln!("error: {}", err),
         };
     }
 }
