@@ -7,5 +7,7 @@ members = [
     "e-generate-address",
     "f-send-tokens",
     "g-check-balance",
-    "h-streams"
+    "h-streams",
+    "h-streams-publish",
+    "h-streams-subscribe"
 ]

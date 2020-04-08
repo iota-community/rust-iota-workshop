@@ -63,7 +63,7 @@ fn example() -> Fallible<()> {
         ensure!(masked_payload == unwrapped_masked);
     }
 
-    /*
+    
     println!("change key");
     let change_key = author.change_key(announcement.link())?;
     {
@@ -73,7 +73,7 @@ fn example() -> Fallible<()> {
         println!("unwrap change key");
         subscriber.unwrap_change_key(preparsed)?;
     }
-     */
+     
 
     Ok(())
 }
