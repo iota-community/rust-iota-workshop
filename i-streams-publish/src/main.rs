@@ -12,7 +12,10 @@ fn example() -> Fallible<()> {
     println!("announce");
     let announcement = author.announce()?;
 
-    Transport::send_message(&mut client, &announcement);
+    println!("send_message");
+    let response = Transport::send_message(&mut client, &announcement);
+
+    println!("response: {:?}", response);
 
     Ok(())
 }
