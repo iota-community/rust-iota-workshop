@@ -1,5 +1,5 @@
 [package]
-name = "h-streams-subscribe"
+name = "j-streams-subscribe"
 version = "0.1.0"
 authors = ["huhn <huhn@einfachIOTA.de>", "you", ]
 edition = "2018"

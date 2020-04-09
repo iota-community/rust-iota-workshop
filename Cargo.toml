@@ -8,6 +8,6 @@ members = [
     "f-send-tokens",
     "g-check-balance",
     "h-streams",
-    "h-streams-publish",
-    "h-streams-subscribe"
+    "i-streams-publish",
+    "j-streams-subscribe"
 ]

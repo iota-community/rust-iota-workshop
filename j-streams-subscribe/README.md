@@ -3,5 +3,5 @@
 
 Run
 ```bash
-cargo run --bin h-streams-publish
+cargo run --bin j-streams-subscribe
 ```
