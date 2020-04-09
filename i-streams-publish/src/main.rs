@@ -1,13 +1,12 @@
 use failure::{ensure, Fallible};
-use iota_streams_app_channel::{
+use iota_streams::app::{message::HasLink, transport::Transport};
+use iota_streams::app_channel::{
     api::tangle::{Author, Subscriber},
     message,
 };
-use iota_streams_core::tbits::Tbits;
-use iota_streams_protobuf3::types::Trytes;
+use iota_streams::core::tbits::Tbits;
+use iota_streams::protobuf3::types::Trytes;
 use std::str::FromStr;
-use iota_streams_app::{message::HasLink, transport::Transport};
-
 
 fn example() -> Fallible<()> {
     let mut client = iota_lib_rs::iota_client::Client::new("http://nodes.devnet.iota.org/");
@@ -17,7 +16,7 @@ fn example() -> Fallible<()> {
     println!("announce");
     let announcement = author.announce()?;
     println!("send_message");
-    client.send_message(&announcement);
+    client.send_message(&announcement)?;
     println!("send_message done");
 
     {
@@ -35,7 +34,7 @@ fn example() -> Fallible<()> {
 
     println!("share keyload for everyone");
     let keyload = author.share_keyload_for_everyone(announcement.link())?;
-    client.send_message(&keyload);
+    client.send_message(&keyload)?;
 
     {
         let preparsed = keyload.parse_header()?;
@@ -49,8 +48,7 @@ fn example() -> Fallible<()> {
     println!("sign packet");
     let signed_packet =
         author.sign_packet(announcement.link(), &public_payload, &masked_payload)?;
-    Transport::send_message(&mut client, &signed_packet);
-    client.send_message(&signed_packet);
+    client.send_message(&signed_packet)?;
 
     {
         let preparsed = signed_packet.parse_header()?;
@@ -62,7 +60,7 @@ fn example() -> Fallible<()> {
 
     println!("tag packet");
     let tagged_packet = author.tag_packet(announcement.link(), &public_payload, &masked_payload)?;
-    client.send_message(&tagged_packet);
+    client.send_message(&tagged_packet)?;
 
     {
         let preparsed = tagged_packet.parse_header()?;
