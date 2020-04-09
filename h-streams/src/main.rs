@@ -1,16 +1,23 @@
 use failure::{ensure, Fallible};
-use iota_streams_app::message::HasLink;
-use iota_streams_app_channel::{
+use iota_streams::app::message::HasLink;
+use iota_streams::app_channel::{
     api::tangle::{Author, Subscriber},
     message,
 };
-use iota_streams_core::tbits::Tbits;
-use iota_streams_protobuf3::types::Trytes;
+use iota_streams::core::tbits::Tbits;
+use iota_streams::protobuf3::types::Trytes;
 use std::str::FromStr;
 
 fn example() -> Fallible<()> {
-    let mut author = Author::new("AGDXXACSRTFNNJAFT9TNAABRUHRKUEHZALMUVQ9Z9UNO9VCGN9NJIYVFFXQ9QHEKSN9DNEVGFGYQOB9MV", 2, false);
-    let mut subscriber = Subscriber::new("SGDXXACSRTFNNJAFT9TNAABRUHRKUEHZALMUVQ9Z9UNO9VCGN9NJIYVFFXQ9QHEKSN9DNEVGFGYQOB9MA", false);
+    let mut author = Author::new(
+        "AGDXXACSRTFNNJAFT9TNAABRUHRKUEHZALMUVQ9Z9UNO9VCGN9NJIYVFFXQ9QHEKSN9DNEVGFGYQOB9MV",
+        2,
+        false,
+    );
+    let mut subscriber = Subscriber::new(
+        "SGDXXACSRTFNNJAFT9TNAABRUHRKUEHZALMUVQ9Z9UNO9VCGN9NJIYVFFXQ9QHEKSN9DNEVGFGYQOB9MA",
+        false,
+    );
 
     println!("announce");
     let announcement = author.announce()?;
@@ -63,7 +70,6 @@ fn example() -> Fallible<()> {
         ensure!(masked_payload == unwrapped_masked);
     }
 
-    
     println!("change key");
     let change_key = author.change_key(announcement.link())?;
     {
@@ -73,7 +79,6 @@ fn example() -> Fallible<()> {
         println!("unwrap change key");
         subscriber.unwrap_change_key(preparsed)?;
     }
-     
 
     Ok(())
 }
