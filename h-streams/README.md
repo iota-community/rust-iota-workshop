@@ -3,5 +3,5 @@
 
 Run
 ```bash
-cargo run --bin h-streams
+cargo run --bin h-streams --release
 ```

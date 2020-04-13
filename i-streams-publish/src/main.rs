@@ -15,9 +15,7 @@ fn example() -> Fallible<()> {
 
     println!("announce");
     let announcement = author.announce()?;
-    println!("send_message");
     client.send_message(&announcement)?;
-    println!("send_message done");
 
     {
         let preparsed = announcement.parse_header()?;

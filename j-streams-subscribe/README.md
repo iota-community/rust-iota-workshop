@@ -3,5 +3,5 @@
 
 Run
 ```bash
-cargo run --bin j-streams-subscribe
+cargo run --bin j-streams-subscribe --release
 ```

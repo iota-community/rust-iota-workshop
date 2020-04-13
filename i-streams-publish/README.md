@@ -3,5 +3,5 @@
 
 Run
 ```bash
-cargo run --bin i-streams-publish
+cargo run --bin i-streams-publish --release
 ```
