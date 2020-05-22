@@ -1,8 +1,16 @@
-use iota_lib_rs::prelude::*;
+//! Get node information from an IOTA node.
+//!
+//! Run with:
+//!
+//! ```
+//! cargo run --example get_node_info
+//! ```
+use anyhow::Result;
 
-fn main() {
-    let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
-
-    let node_info = api.get_node_info().unwrap();
-    println!("{:?}", node_info);
+#[smol_potat::main]
+async fn main() -> Result<()> {
+    iota::Client::add_node("http://thethings.tech:14265")?;
+    let node_info = iota::Client::get_node_info().await?;
+    println!("{:#?}", node_info);
+    Ok(())
 }
