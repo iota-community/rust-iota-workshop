@@ -1,33 +1,69 @@
-use iota_client::options::SendTransferOptions;
-use iota_conversion::trytes_converter;
-use iota_lib_rs::prelude::*;
-use iota_model::Transfer;
+//! Send a transfer to an address.
+//!
+//! Run with:
+//!
+//! ```
+//! cargo run --bin b-send-data
+//! ```
+use anyhow::Result;
+use iota::{
+    bundle::{Address, TransactionField},
+    client::Transfer,
+    crypto::Kerl,
+    signing::{IotaSeed, Seed},
+    ternary::{T1B1Buf, TryteBuf},
+};
+use iota_conversion::Trinary;
 
-fn main() {
-    let mut api = iota_client::Client::new("https://nodes.devnet.iota.org:443");
+#[smol_potat::main]
+async fn main() -> Result<()> {
+    // Prepare a vector of transfers
+    let mut transfers = Vec::new();
 
-    let seed = "SEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDSEEDS";
-    let address =
-        "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR";
-    let my_message = trytes_converter::to_trytes("Hello World").unwrap();
+    // Push the transfer to vector.
+    transfers.push(Transfer {
+        // Address is 81 trytes.
+        address: Address::from_inner_unchecked(
+            TryteBuf::try_from_str(
+                "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
+            )
+            .unwrap()
+            .as_trits()
+            .encode(),
+        ),
+        // We are using a zero balance seed so we make a zero value transfer here
+        value: 0,
+        message: Some(String::from("Hello Tangle!")),
+        tag: None,
+    });
 
-    let transfer = Transfer {
-        address: address.to_string(),
-        message: my_message,
-        ..Transfer::default()
-    };
-
-    let transaction = api
-        .send_transfers(
-            transfer,
-            &seed,
-            SendTransferOptions {
-                local_pow: true,
-                threads: 2,
-                ..SendTransferOptions::default()
-            },
+    // Create a client instance
+    iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
+    // Call send_transfers api
+    // Below is just a dummy seed which just serves as an example.
+    // If you want to replace your own. It probably should be a seed with balance on comnet/devnet.
+    let res = iota::Client::send_transfers(
+        &IotaSeed::<Kerl>::from_buf(
+            TryteBuf::try_from_str(
+                "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
+            )
+            .unwrap()
+            .as_trits()
+            .encode::<T1B1Buf>(),
         )
-        .unwrap();
+        .unwrap(),
+    )
+    // Input the transfers
+    .transfers(transfers)
+    // We are sending to comnet, so mwm should be 10. It's 14 by default if you don't call this.
+    .min_weight_magnitude(10)
+    // Sending to the node and receive the response
+    .send()
+    .await?;
 
-    println!("{:?}", transaction);
+    // The response of send_transfers is vector of Transaction type. We choose the first one and see what is its bundle hash
+    println!("Search in theTangle: https://comnet.thetangle.org");
+    println!("{:?}", res[0].bundle().to_inner().as_i8_slice().trytes());
+
+    Ok(())
 }
