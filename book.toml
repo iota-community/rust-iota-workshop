@@ -1,0 +1,6 @@
+[book]
+authors = ["huhn511"]
+language = "en"
+multilingual = false
+src = "./"
+title = "rust-iota-workshop"

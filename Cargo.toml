@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "a-get-node-info",
+    "b-send-data",
+    "c-get-transaction-hash",
+    "d-fetch-data",
+    "e-generate-address",
+    "f-send-tokens",
+    "g-check-balance",
+    "h-streams",
+    "i-streams-publish",
+    "j-streams-subscribe"
+]
