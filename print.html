@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Readme</a></li><li class="chapter-item expanded "><a href="docs/00_introduction.html"><strong aria-hidden="true">2.</strong> introduction</a></li><li class="chapter-item expanded "><a href="docs/01_setup.html"><strong aria-hidden="true">3.</strong> setup</a></li><li class="chapter-item expanded "><a href="a-get-node-info/index.html"><strong aria-hidden="true">4.</strong> a-get-node-info</a></li><li class="chapter-item expanded "><a href="b-send-data/index.html"><strong aria-hidden="true">5.</strong> b-send-data</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Readme</a></li><li class="chapter-item expanded "><a href="docs/index.html"><strong aria-hidden="true">2.</strong> introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="docs/00_get_node_info.html"><strong aria-hidden="true">2.1.</strong> 00_get_node_info</a></li><li class="chapter-item expanded "><a href="docs/01_send_data.html"><strong aria-hidden="true">2.2.</strong> 01_send_data</a></li><li class="chapter-item expanded "><a href="docs/02_fetch_data.html"><strong aria-hidden="true">2.3.</strong> 02_fetch_data</a></li><li class="chapter-item expanded "><a href="docs/03_get_new_address.html"><strong aria-hidden="true">2.4.</strong> 03_get_new_address</a></li><li class="chapter-item expanded "><a href="docs/04_check_balance.html"><strong aria-hidden="true">2.5.</strong> 04_check_balance</a></li><li class="chapter-item expanded "><a href="docs/05_send_tokens.html"><strong aria-hidden="true">2.6.</strong> 05_send_tokens</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -203,9 +203,65 @@ cd iota-rust-workshop
 </ul>
 <p>PRs are welcome on master</p>
 <h1><a class="header" href="#introduction" id="introduction">introduction</a></h1>
-<h1><a class="header" href="#setup" id="setup">setup</a></h1>
-<h1><a class="header" href="#a-get-node-info" id="a-get-node-info">a-get-node-info</a></h1>
-<h1><a class="header" href="#b-send-data" id="b-send-data">b-send-data</a></h1>
+<p><a href="https://www.iota.org/">IOTA</a> is the backbone for the Internet of Things. <a href="https://www.rust-lang.org/">Rust</a> is made for this and the Web, so it fits perfectly togheter. </p>
+<h2><a class="header" href="#what-is-rust" id="what-is-rust">What is Rust?</a></h2>
+<p>Rust is a <a href="https://en.wikipedia.org/wiki/Programming_language">multi-paradigm programming language</a> focused on performance and <a href="https://en.wikipedia.org/wiki/Memory_safety">safety</a>. It’s developed by Mozilla and backed up with <a href="https://www.rust-lang.org/sponsors">sponsoring by big players</a> like Amazon Web Services (AWS), Google Cloud, and Microsoft Azure. Here is a <a href="https://www.rust-lang.org/production/users">website</a> with some companies which use Rust in production with different uses cases. These use cases are very diverse, for example, Atlassian use Rust in service for analyzing petabytes of their source code and Cloudflare uses it as a replacement for memory-unsafe languages (particularly C) and is using it in their core edge logic.</p>
+<h2><a class="header" href="#what-is-iota" id="what-is-iota">What is IOTA?</a></h2>
+<p>The first open-source distributed ledger that is being built to power the future of the Internet of Things with feeless microtransactions and data integrity for machines.
+<a href="https://www.iota.org/get-started/what-is-iota">iota.org</a></p>
+<h2><a class="header" href="#what-is-this-workshop" id="what-is-this-workshop">What is this Workshop?</a></h2>
+<p>This workshop is for developers, who wants to get started with IOTA and Rust. It containts examples, which can be build and run with <a href="https://doc.rust-lang.org/cargo/">Cargo</a>. Cargo is the Rust package manager.</p>
+<p>The workshop will cover </p>
+<ul>
+<li>Connect to the Tangle</li>
+<li>Send Data</li>
+<li>Fetch Data</li>
+<li>Create an IOTA Address</li>
+<li>Get tokens via the a <a href="https://faucet.comnet.einfachiota.de/#/">faucet</a> and check the balance</li>
+<li>Send Tokens</li>
+</ul>
+<h2><a class="header" href="#setup-developer-environment" id="setup-developer-environment">Setup Developer Environment</a></h2>
+<p>You will need to install Rust and a Code Editor.</p>
+<h3><a class="header" href="#install-rust" id="install-rust">Install Rust</a></h3>
+<p>To install rust on your computer, follow the instructions on official rust website</p>
+<p>for macOS, Linux, or another Unix-like OS run in your terminal</p>
+<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+<p>For other platforms, see <a href="https://www.rust-lang.org/learn/get-started">Installing Rust Guide</a></p>
+<h3><a class="header" href="#code-editor" id="code-editor">Code editor</a></h3>
+<p>Choose a code editor. 
+We recommend Visual Studio Code - <a href="https://code.visualstudio.com/">VSCode</a>.</p>
+<p>Open a new Terminal in VSCode an run the first example.</p>
+<h1><a class="header" href="#00_get_node_info" id="00_get_node_info">00_get_node_info</a></h1>
+<p>Get node information from an IOTA node.</p>
+<pre><code class="language-bash">cargo run --example 00_get_node_info
+</code></pre>
+<p>you should see some informations about the connected IOTA node, like this:</p>
+<pre><code class="language-bash">GetNodeInfoResponse {
+    app_name: &quot;HORNET&quot;,
+    app_version: &quot;0.4.0-rc12&quot;,
+    jre_available_processors: None,
+    jre_free_memory: None,
+    jre_max_memory: None,
+    jre_total_memory: None,
+    jre_version: None,
+    latest_milestone: &quot;EC9XOVXNBHUHKVPTJGYMKZVEGDH9GYWPFDCBKVTDWIGAOKLISDDMTFOPXFEOJRMZVZCFYPSYUUBOA9999&quot;,
+    latest_milestone_index: 1428959,
+    latest_solid_subtangle_milestone: &quot;EC9XOVXNBHUHKVPTJGYMKZVEGDH9GYWPFDCBKVTDWIGAOKLISDDMTFOPXFEOJRMZVZCFYPSYUUBOA9999&quot;,
+    latest_solid_subtangle_milestone_index: 1428959,
+    milestone_start_index: 1427599,
+    neighbors: 4,
+    packets_queue_size: None,
+    time: 1590882172000,
+    tips: 0,
+    transactions_to_request: 0,
+}
+</code></pre>
+<h1><a class="header" href="#01_send_data" id="01_send_data">01_send_data</a></h1>
+<h1><a class="header" href="#02_fetch_data" id="02_fetch_data">02_fetch_data</a></h1>
+<h1><a class="header" href="#03_get_new_address" id="03_get_new_address">03_get_new_address</a></h1>
+<h1><a class="header" href="#04_check_balance" id="04_check_balance">04_check_balance</a></h1>
+<h1><a class="header" href="#05_send_tokens" id="05_send_tokens">05_send_tokens</a></h1>
 
                     </main>
 
