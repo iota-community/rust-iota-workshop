@@ -3,7 +3,7 @@
 //! Run with:
 //!
 //! ```
-//! cargo run --bin b-send-data
+//! cargo run --example 01_send_data
 //! ```
 use anyhow::Result;
 use iota::{

@@ -161,44 +161,51 @@ cd iota-rust-workshop
 <h3><a class="header" href="#run-first-example" id="run-first-example">Run first example</a></h3>
 <p>All examples can be run from within the root directory (rust-iota-workshop)</p>
 <p>Run</p>
-<pre><code class="language-bash">cargo run --bin [crate]
+<pre><code class="language-bash">cargo run --example [example]
 </code></pre>
 <p>Example</p>
-<pre><code class="language-bash">cargo run --bin a-get-node-info
+<pre><code class="language-bash">cargo run --example 00_get_node_info
 </code></pre>
 <p>You should receive a message including the statistics of an IOTA node. This means you can explore and run the other examples.</p>
-<h2><a class="header" href="#note" id="note">Note:</a></h2>
-<p>When running one of the streams examples, build with <code>--release</code> tag</p>
-<p>Example</p>
-<pre><code class="language-bash">cargo run --bin i-streams-publish --release
-</code></pre>
 <h3><a class="header" href="#examples-included" id="examples-included">Examples included</a></h3>
 <p>Here you can find all the examples:</p>
 <ul>
-<li><a href="./a-get-node-info/README.html">get-node info</a></li>
-<li><a href="./b-send-data/README.html">send-data</a></li>
-<li><a href="./c-get-transaction-hash/README.html">get-transaction-hash</a></li>
-<li><a href="./d-fetch-data/README.html">fetch-data</a></li>
-<li><a href="./e-generate-address/README.html">create-address</a></li>
-<li><a href="./f-send-tokens/README.html">send-tokens</a></li>
-<li><a href="./g-check-balance/README.html">check-balance</a></li>
-<li><a href="./h-streams/README.html">streams</a></li>
-<li><a href="./i-streams-publish/README.html">streams-publish</a></li>
-<li><a href="./j-streams-subscribe/README.html">streams-subscribe</a></li>
+<li><a href="./examples/00_get_node_info.rs">00_get_node_info</a>
+<ul>
+<li><code>cargo run --example 00_get_node_info</code></li>
+</ul>
+</li>
+<li><a href="./examples/01_send_data.rs">01_send_data</a>
+<ul>
+<li><code>cargo run --example 01_send_data</code></li>
+</ul>
+</li>
+<li><a href="./examples/02_fetch_data.rs">02_fetch_data</a>
+<ul>
+<li><code>cargo run --example 02_fetch_data</code></li>
+</ul>
+</li>
+<li><a href="./examples/03_get_new_address.rs">03_get_new_address</a>
+<ul>
+<li><code>cargo run --example 03_get_new_address</code></li>
+</ul>
+</li>
+<li><a href="./examples/04_check_balance.rs">04_check_balance</a>
+<ul>
+<li><code>cargo run --example 04_check_balance</code></li>
+</ul>
+</li>
+<li><a href="./examples/05_send_tokens.rs">05_send_tokens</a>
+<ul>
+<li><code>cargo run --example 05_send_tokens</code></li>
+</ul>
+</li>
 </ul>
 <p>PRs are welcome on master</p>
 <h1><a class="header" href="#introduction" id="introduction">introduction</a></h1>
 <h1><a class="header" href="#setup" id="setup">setup</a></h1>
-<p>#a-get-node-info</p>
-<h2><a class="header" href="#run-the-example" id="run-the-example">Run the example</a></h2>
-<p>Run</p>
-<pre><code class="language-bash">cargo run --bin a-get-node-info
-</code></pre>
-<p>#b-send-data</p>
-<h2><a class="header" href="#run-the-example-1" id="run-the-example-1">Run the example</a></h2>
-<p>Run</p>
-<pre><code class="language-bash">cargo run --bin b-send-data
-</code></pre>
+<h1><a class="header" href="#a-get-node-info" id="a-get-node-info">a-get-node-info</a></h1>
+<h1><a class="header" href="#b-send-data" id="b-send-data">b-send-data</a></h1>
 
                     </main>
 
