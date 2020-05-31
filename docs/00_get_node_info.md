@@ -8,6 +8,7 @@ cargo run --example 00_get_node_info
 
 you should see some informations about the connected IOTA node, like this:
 
+**Example Output**
 ```bash
 GetNodeInfoResponse {
     app_name: "HORNET",

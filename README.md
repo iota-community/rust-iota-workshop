@@ -47,3 +47,8 @@ Here you can find all the examples:
 
 
 PRs are welcome on master
+
+### Todo List
+- [ ] implement 02_fetch_data
+- [ ] implement 04_check_balance
+- [ ] implement 05_send_tokens
