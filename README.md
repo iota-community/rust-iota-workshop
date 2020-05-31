@@ -52,3 +52,7 @@ PRs are welcome on master
 - [ ] implement 02_fetch_data
 - [ ] implement 04_check_balance
 - [ ] implement 05_send_tokens
+
+- [ ] write documentation 02_fetch_data
+- [ ] write documentation 04_check_balance
+- [ ] write documentation 05_send_tokens
