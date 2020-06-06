@@ -25,7 +25,7 @@ async fn main() -> Result<()> {
         // Address is 81 trytes.
         address: Address::from_inner_unchecked(
             TryteBuf::try_from_str(
-                "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
+                "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR",
             )
             .unwrap()
             .as_trits()
