@@ -8,10 +8,7 @@
 use anyhow::Result;
 use iota::{
     bundle::{Address, TransactionField},
-    client::Transfer,
-    crypto::Kerl,
-    signing::{IotaSeed, Seed},
-    ternary::{T1B1Buf, TryteBuf},
+    ternary::TryteBuf,
 };
 use iota_conversion::Trinary;
 
@@ -32,6 +29,18 @@ async fn main() -> Result<()> {
         .send()
         .await?;
 
-    println!("{:?}", response.hashes[0]);
+    let input_trytes = response.hashes[0]
+        .as_bytes()
+        .trits()
+        .trytes();
+
+
+    println!("{:?}", input_trytes);
+
+    // TODO: "input_trytes" into string
+
+    // let message = iota_conversion::trytes_converter::to_string(input_trytes);
+
+    // println!("message: {:?}", message);
     Ok(())
 }
