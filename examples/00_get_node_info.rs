@@ -9,7 +9,7 @@ use anyhow::Result;
 
 #[smol_potat::main]
 async fn main() -> Result<()> {
-    iota::Client::add_node("http://thethings.tech:14265")?;
+    iota::Client::add_node("https://nodes.comnet.thetangle.org:443")?;
     let node_info = iota::Client::get_node_info().await?;
     println!("{:#?}", node_info);
     Ok(())
