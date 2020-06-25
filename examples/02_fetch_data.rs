@@ -7,10 +7,10 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    bundle::{Address, TransactionField},
-    ternary::TryteBuf,
+    bundle::{Hash, Address, TransactionField},
+    ternary::{T1B1Buf, TryteBuf},
 };
-use iota_conversion::Trinary;
+use iota_conversion::{Trinary, trytes_converter};
 
 #[smol_potat::main]
 async fn main() -> Result<()> {
@@ -35,12 +35,30 @@ async fn main() -> Result<()> {
         .trytes();
 
 
-    println!("{:?}", input_trytes);
+    let trx_hash = Hash::try_from_inner(
+                        TryteBuf::try_from_str(&input_trytes.unwrap())
+                            .unwrap()
+                            .as_trits()
+                            .encode::<T1B1Buf>()
+                    ).unwrap();
 
-    // TODO: "input_trytes" into string
 
-    // let message = iota_conversion::trytes_converter::to_string(input_trytes);
+    let transactions = iota::Client::get_bundle(&trx_hash).await?;
 
-    // println!("message: {:?}", message);
+    let trytes_coll: Vec::<String> = transactions.iter()
+                                                 .map(|t| t.payload()
+                                                          .to_inner().as_i8_slice().trytes().unwrap()
+                                                          .trim_end_matches('9').to_string())
+                                                 .collect();
+
+    let message = match trytes_converter::to_string(&trytes_coll.concat()) {
+        Ok(m)  => m,
+        Err(e) => { println!("Error: trytes_converter.to_string()\n\t{}", e);
+                    std::process::exit(1); },
+
+    };
+
+    println!("Message:\n{}", message);
+
     Ok(())
 }
