@@ -17,7 +17,7 @@ async fn main() -> Result<()> {
     iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
     let address = Address::from_inner_unchecked(
         TryteBuf::try_from_str(
-            "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRDRDOUMLV9",
+            "HEQLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWOR99DMNFAQLWHD",
         )
         .unwrap()
         .as_trits()
