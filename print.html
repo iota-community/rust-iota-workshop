@@ -288,13 +288,12 @@ We recommend Visual Studio Code - <a href="https://code.visualstudio.com/">VSCod
 }
 </code></pre>
 <h1><a class="header" href="#01_send_data" id="01_send_data">01_send_data</a></h1>
-<p>Send a transfer to an address.</p>
+<p>Send data to an address.</p>
 <pre><code class="language-bash">cargo run --example 01_send_data
 </code></pre>
 <p>you will see the bundlehash in the console. Search for it on <a href="https://comnet.thetangle.org/">TheTangle.org</a> in the comnet network. </p>
 <p><strong>Example Output</strong></p>
-<pre><code class="language-bash">Search in theTangle: https://comnet.thetangle.org
-Ok(&quot;YNJYZXE9OQIRPSEICEIUFKLUHRAUXLJFFZPLXQKQW9ACXSLVTWKAAKH9VDHVUE9BCPKSOCBFKHIKVCOIX&quot;)
+<pre><code class="language-bash">Search in theTangle: https://comnet.thetangle.org/bundle/IZCNJKGNCCTCYYKICTNFWOIBYTSSNJZWGXPBE9VLWQUBJGRKQHGCFEKKLGALJSIQRCVKDIYLQOFFVGOGY
 </code></pre>
 <h1><a class="header" href="#02_fetch_data" id="02_fetch_data">02_fetch_data</a></h1>
 <p>Send a transfer to an address.</p>
@@ -309,9 +308,9 @@ HELLOWORLD
 <p>Get an unused address from a connected node.</p>
 <pre><code class="language-bash">cargo run --example 03_get_new_address
 </code></pre>
-<p>You will see the address in the console. Go to the <a href="https://faucet.comnet.einfachiota.de">einfachIOTA Comnet Facuet</a> and send 1000 IOTA to it. </p>
+<p>You will see the address in the console. Go to the <a href="https://faucet.comnet.einfachiota.de">einfachIOTA Comnet Facuet</a> and send 1 IOTA to it. </p>
 <p><strong>Example Output</strong></p>
-<pre><code class="language-bash">Index: 0, Address:Ok(&quot;LOLCUVZ9MBPBTGJGMRLHNLDGCNAWUCGNRBBKUGKRAUSGRCHYXZPGEBXBPJFTBPYPNMCYNDCFZTFYSCXEB&quot;)
+<pre><code class="language-bash">Index: 0, Address: LOLCUVZ9MBPBTGJGMRLHNLDGCNAWUCGNRBBKUGKRAUSGRCHYXZPGEBXBPJFTBPYPNMCYNDCFZTFYSCXEB
 </code></pre>
 <h1><a class="header" href="#04_check_balance" id="04_check_balance">04_check_balance</a></h1>
 <p>Get IOTA balance from an address.</p>
@@ -322,7 +321,11 @@ HELLOWORLD
 <pre><code class="language-bash">Balance: 1
 </code></pre>
 <h1><a class="header" href="#05_send_tokens" id="05_send_tokens">05_send_tokens</a></h1>
-<pre><code class="language-bash">need to be written
+<pre><code class="language-bash">cargo run --example 05_send_tokens
+</code></pre>
+<p>This sends 1 IOTA to this address: <a href="https://comnet.thetangle.org/address/ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADD9">ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADD9</a> and show the result in the output.</p>
+<p><strong>Example Output</strong></p>
+<pre><code class="language-bash">Transfer sent: https://comnet.thetangle.org/bundle/EEGUFAZBHYGCBIBZCINKVJJROUEQZJXTWIALAKAOTDHAWGRXHVBVZ9COWIETWPUGFHDHDUOHSNDEVJAJW
 </code></pre>
 
                     </main>

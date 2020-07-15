@@ -7,7 +7,8 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    bundle::{Hash, Address, TransactionField},
+    transaction::bundled::{Address, BundledTransactionField},
+    crypto::ternary::{Hash},
     ternary::{T1B1Buf, TryteBuf},
 };
 use iota_conversion::{Trinary, trytes_converter};
@@ -21,7 +22,7 @@ async fn main() -> Result<()> {
         )
         .unwrap()
         .as_trits()
-        .encode(),
+        .encode()
     );
 
     let response = iota::Client::find_transactions()
