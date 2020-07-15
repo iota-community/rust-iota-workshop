@@ -1,6 +1,6 @@
 # 01_send_data
 
-Send a transfer to an address.
+Send data to an address.
 
 
 ```bash
@@ -11,6 +11,5 @@ you will see the bundlehash in the console. Search for it on [TheTangle.org](htt
 
 **Example Output**
 ```bash
-Search in theTangle: https://comnet.thetangle.org
-Ok("YNJYZXE9OQIRPSEICEIUFKLUHRAUXLJFFZPLXQKQW9ACXSLVTWKAAKH9VDHVUE9BCPKSOCBFKHIKVCOIX")
+Search in theTangle: https://comnet.thetangle.org/bundle/IZCNJKGNCCTCYYKICTNFWOIBYTSSNJZWGXPBE9VLWQUBJGRKQHGCFEKKLGALJSIQRCVKDIYLQOFFVGOGY
 ```

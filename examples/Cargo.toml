@@ -1,13 +1,13 @@
 [package]
 name = "examples"
 version = "0.1.0"
-authors = ["rckey <private.richardk@gmail.com>", "huhn <huhn@einfachIOTA.de>"]
+authors = ["rckey <private.richardk@gmail.com>", "huhn <huhn@einfachIOTA.de>", "Thoralf-M <thoralf.mue@gmail.com>"]
 edition = "2018"
 
 [dependencies]
 anyhow = "1.0.28"
-iota-core = "0.2.0-alpha.2"
-iota-conversion =  "0.5.0"
+iota-core = { git = "https://github.com/iotaledger/iota.rs", rev = "37dca441418a9da2d8c045da381e2e3ef29c40ca" }
+iota-conversion =  "0.5.1"
 smol = {version = "=0.1.7", features = ["tokio02"] }
 smol-potat = "0.3.1"
 

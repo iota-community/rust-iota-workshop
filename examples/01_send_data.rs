@@ -7,10 +7,10 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    bundle::{Address, TransactionField},
+    transaction::bundled::{Address, BundledTransactionField},
     client::Transfer,
-    crypto::Kerl,
-    signing::{IotaSeed, Seed},
+    crypto::ternary::Kerl,
+    signing::ternary::{TernarySeed, Seed},
     ternary::{T1B1Buf, TryteBuf},
 };
 use iota_conversion::Trinary;
@@ -43,7 +43,8 @@ async fn main() -> Result<()> {
     // Below is just a dummy seed which just serves as an example.
     // If you want to replace your own. It probably should be a seed with balance on comnet/devnet.
     let res = iota::Client::send_transfers(
-        &IotaSeed::<Kerl>::from_buf(
+        Some(
+        &TernarySeed::<Kerl>::from_buf(
             TryteBuf::try_from_str(
                 "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
             )
@@ -52,8 +53,8 @@ async fn main() -> Result<()> {
             .encode::<T1B1Buf>(),
         )
         .unwrap(),
-    )
-    // Input the transfers
+    ))
+     // Input the transfers
     .transfers(transfers)
     // We are sending to comnet, so mwm should be 10. It's 14 by default if you don't call this.
     .min_weight_magnitude(10)
@@ -62,8 +63,7 @@ async fn main() -> Result<()> {
     .await?;
 
     // The response of send_transfers is vector of Transaction type. We choose the first one and see what is its bundle hash
-    println!("Search in theTangle: https://comnet.thetangle.org");
-    println!("{:?}", res[0].bundle().to_inner().as_i8_slice().trytes());
+    println!("Search in theTangle: https://comnet.thetangle.org/bundle/{}", res[0].bundle().to_inner().as_i8_slice().trytes().unwrap());
 
     Ok(())
 }

@@ -1,5 +1,12 @@
 # 05_send_tokens
 
 ```bash
-need to be written
+cargo run --example 05_send_tokens
+```
+
+This sends 1 IOTA to this address: [ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADD9](https://comnet.thetangle.org/address/ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADD9) and show the result in the output.
+
+**Example Output**
+```bash
+Transfer sent: https://comnet.thetangle.org/bundle/EEGUFAZBHYGCBIBZCINKVJJROUEQZJXTWIALAKAOTDHAWGRXHVBVZ9COWIETWPUGFHDHDUOHSNDEVJAJW
 ```
