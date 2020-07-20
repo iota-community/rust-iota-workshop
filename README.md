@@ -5,7 +5,7 @@ Simple examples to help a developer work through interacting with the IOTA netwo
 To start playing with these examples run the following commands:
 
 ```bash
-git clone https://github.com/huhn511/rust-iota-workshop.git
+git clone https://github.com/iota-community/rust-iota-workshop.git
 cd rust-iota-workshop
 ```
 
