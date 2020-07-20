@@ -5,8 +5,8 @@ Simple examples to help a developer work through interacting with the IOTA netwo
 To start playing with these examples run the following commands:
 
 ```bash
-git clone https://github.com/iota-community/iota-rust-workshop.git
-cd iota-rust-workshop
+git clone https://github.com/iota-community/rust-iota-workshop.git
+cd rust-iota-workshop
 ```
 
 ### Installing Rust
@@ -49,10 +49,4 @@ Here you can find all the examples:
 PRs are welcome on master
 
 ### Todo List
-- [ ] implement 02_fetch_data
-- [ ] implement 04_check_balance
-- [ ] implement 05_send_tokens
-
-- [ ] write documentation 02_fetch_data
-- [ ] write documentation 04_check_balance
-- [ ] write documentation 05_send_tokens
+- [ ] implement ?
