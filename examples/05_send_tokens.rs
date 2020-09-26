@@ -7,11 +7,10 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    transaction::bundled::{Address, BundledTransactionField},
     client::Transfer,
-    crypto::ternary::Kerl,
-    signing::ternary::{TernarySeed, Seed},
+    signing::ternary::seed::Seed,
     ternary::{T1B1Buf, TryteBuf},
+    transaction::bundled::{Address, BundledTransactionField},
 };
 use iota_conversion::Trinary;
 
@@ -37,12 +36,14 @@ async fn main() -> Result<()> {
     });
 
     // Create a client instance
-    iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
+    let iota = iota::ClientBuilder::new()
+        .node("https://nodes.comnet.thetangle.org")?
+        .build()?;
     // Call send_transfers api
     // Below is just a dummy seed which just serves as an example.
     // If you want to replace your own. It probably should be a seed with balance on comnet/devnet.
-    let res = iota::Client::send_transfers(Some(
-        &TernarySeed::<Kerl>::from_buf(
+    let res = iota.send(Some(
+        &Seed::from_trits(
             TryteBuf::try_from_str(
                 "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
             )
@@ -61,7 +62,10 @@ async fn main() -> Result<()> {
     .await?;
 
     // The response of send_transfers is vector of Transaction type. We choose the first one and see what is its bundle hash
-    println!("Transfer sent: https://comnet.thetangle.org/bundle/{}", res[0].bundle().to_inner().as_i8_slice().trytes().unwrap());
+    println!(
+        "Transfer sent: https://comnet.thetangle.org/bundle/{}",
+        res[0].bundle().to_inner().as_i8_slice().trytes().unwrap()
+    );
 
     Ok(())
 }

@@ -7,14 +7,16 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    transaction::bundled::{Address, BundledTransactionField},
     ternary::TryteBuf,
+    transaction::bundled::{Address, BundledTransactionField},
 };
 
 #[smol_potat::main]
 async fn main() -> Result<()> {
-    iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
-    let response = iota::Client::get_balances()
+    let iota = iota::ClientBuilder::new()
+        .node("https://nodes.comnet.thetangle.org")?
+        .build()?;
+    let response = iota.get_balances()
         .addresses(&[Address::from_inner_unchecked(
             TryteBuf::try_from_str(
                 "LOLCUVZ9MBPBTGJGMRLHNLDGCNAWUCGNRBBKUGKRAUSGRCHYXZPGEBXBPJFTBPYPNMCYNDCFZTFYSCXEBLDPKQBUJ9",
