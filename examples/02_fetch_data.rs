@@ -7,56 +7,52 @@
 //! ```
 use anyhow::Result;
 use iota::{
+    ternary::TryteBuf,
     transaction::bundled::{Address, BundledTransactionField},
-    crypto::ternary::{Hash},
-    ternary::{T1B1Buf, TryteBuf},
 };
-use iota_conversion::{Trinary, trytes_converter};
+use iota_conversion::{trytes_converter, Trinary};
 
 #[smol_potat::main]
 async fn main() -> Result<()> {
-    iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
+    let iota = iota::ClientBuilder::new()
+        .node("https://nodes.comnet.thetangle.org")?
+        .build()?;
     let address = Address::from_inner_unchecked(
         TryteBuf::try_from_str(
-            "HEQLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWORLDHELLOWOR99DMNFAQLWHD",
+            "ADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDRESSADDR",
         )
         .unwrap()
         .as_trits()
-        .encode()
+        .encode(),
     );
 
-    let response = iota::Client::find_transactions()
+    let response = iota
+        .find_transactions()
         .addresses(&[address])
         .send()
         .await?;
 
-    let input_trytes = response.hashes[0]
-        .as_bytes()
-        .trits()
-        .trytes();
+    let transactions = iota.get_bundle(&response.hashes[0]).await?;
 
-
-    let trx_hash = Hash::try_from_inner(
-                        TryteBuf::try_from_str(&input_trytes.unwrap())
-                            .unwrap()
-                            .as_trits()
-                            .encode::<T1B1Buf>()
-                    ).unwrap();
-
-
-    let transactions = iota::Client::get_bundle(&trx_hash).await?;
-
-    let trytes_coll: Vec::<String> = transactions.iter()
-                                                 .map(|t| t.payload()
-                                                          .to_inner().as_i8_slice().trytes().unwrap()
-                                                          .trim_end_matches('9').to_string())
-                                                 .collect();
+    let trytes_coll: Vec<String> = transactions
+        .iter()
+        .map(|t| {
+            t.payload()
+                .to_inner()
+                .as_i8_slice()
+                .trytes()
+                .unwrap()
+                .trim_end_matches('9')
+                .to_string()
+        })
+        .collect();
 
     let message = match trytes_converter::to_string(&trytes_coll.concat()) {
-        Ok(m)  => m,
-        Err(e) => { println!("Error: trytes_converter.to_string()\n\t{}", e);
-                    std::process::exit(1); },
-
+        Ok(m) => m,
+        Err(e) => {
+            println!("Error: trytes_converter.to_string()\n\t{}", e);
+            std::process::exit(1);
+        }
     };
 
     println!("Message:\n{}", message);

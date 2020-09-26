@@ -7,17 +7,16 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    transaction::bundled::{BundledTransactionField},
-    crypto::ternary::Kerl,
-    signing::ternary::{TernarySeed, Seed},
+    signing::ternary::seed::Seed,
     ternary::{T1B1Buf, TryteBuf},
+    transaction::bundled::BundledTransactionField,
 };
 use iota_conversion::Trinary;
 
 #[smol_potat::main]
 async fn main() -> Result<()> {
     // Create seed from your seed trytes
-    let seed = TernarySeed::<Kerl>::from_buf(
+    let seed = Seed::from_trits(
         TryteBuf::try_from_str(
             "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
         )
@@ -27,11 +26,11 @@ async fn main() -> Result<()> {
     )
     .unwrap();
 
-    // The response of get_new_address is a tuple of an adress with its corresponding index from seed.
-    iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
-    let (index, address) = iota::Client::get_new_address(&seed)
-        .generate()
-        .await?;
+    // The response of generate_new_address is a tuple of an adress with its corresponding index from seed.
+    let iota = iota::ClientBuilder::new()
+        .node("https://nodes.comnet.thetangle.org")?
+        .build()?;
+    let (index, address) = iota.generate_new_address(&seed).generate().await?;
 
     println!(
         "Index: {}, Address: {}",

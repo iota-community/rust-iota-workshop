@@ -7,11 +7,9 @@
 //! ```
 use anyhow::Result;
 use iota::{
-    transaction::bundled::{Address, BundledTransactionField},
     client::Transfer,
-    crypto::ternary::Kerl,
-    signing::ternary::{TernarySeed, Seed},
-    ternary::{T1B1Buf, TryteBuf},
+    ternary::TryteBuf,
+    transaction::bundled::{Address, BundledTransactionField},
 };
 use iota_conversion::Trinary;
 
@@ -38,32 +36,25 @@ async fn main() -> Result<()> {
     });
 
     // Create a client instance
-    iota::Client::add_node("https://nodes.comnet.thetangle.org")?;
+    let iota = iota::ClientBuilder::new()
+        .node("https://nodes.comnet.thetangle.org")?
+        .build()?;
     // Call send_transfers api
-    // Below is just a dummy seed which just serves as an example.
-    // If you want to replace your own. It probably should be a seed with balance on comnet/devnet.
-    let res = iota::Client::send_transfers(
-        Some(
-        &TernarySeed::<Kerl>::from_buf(
-            TryteBuf::try_from_str(
-                "RVORZ9SIIP9RCYMREUIXXVPQIPHVCNPQ9HZWYKFWYWZRE9JQKG9REPKIASHUUECPSQO9JT9XNMVKWYGVA",
-            )
-            .unwrap()
-            .as_trits()
-            .encode::<T1B1Buf>(),
-        )
-        .unwrap(),
-    ))
-     // Input the transfers
-    .transfers(transfers)
-    // We are sending to comnet, so mwm should be 10. It's 14 by default if you don't call this.
-    .min_weight_magnitude(10)
-    // Sending to the node and receive the response
-    .send()
-    .await?;
+    let res = iota
+        .send(None)
+        // Input the transfers
+        .transfers(transfers)
+        // We are sending to comnet, so mwm should be 10. It's 14 by default if you don't call this.
+        .min_weight_magnitude(10)
+        // Sending to the node and receive the response
+        .send()
+        .await?;
 
     // The response of send_transfers is vector of Transaction type. We choose the first one and see what is its bundle hash
-    println!("Search in theTangle: https://comnet.thetangle.org/bundle/{}", res[0].bundle().to_inner().as_i8_slice().trytes().unwrap());
+    println!(
+        "Search in theTangle: https://comnet.thetangle.org/bundle/{}",
+        res[0].bundle().to_inner().as_i8_slice().trytes().unwrap()
+    );
 
     Ok(())
 }
