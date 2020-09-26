@@ -6,9 +6,9 @@ edition = "2018"
 
 [dependencies]
 anyhow = "1.0.28"
-iota-core = { git = "https://github.com/iotaledger/iota.rs", rev = "37dca441418a9da2d8c045da381e2e3ef29c40ca" }
+iota-core = { git = "https://github.com/iotaledger/iota.rs", rev="25b0486a0677bdf42ddb15581eeeb17336d72103"}
 iota-conversion =  "0.5.1"
-smol = {version = "=0.1.7", features = ["tokio02"] }
+smol = {version = "=0.1.18", features = ["tokio02"] }
 smol-potat = "0.3.1"
 
 [[example]]
