@@ -6,16 +6,13 @@
 //! cargo run --example 00_get_node_info
 //! ```
 use anyhow::Result;
-use iota::client::Url;
 
 #[smol_potat::main]
 async fn main() -> Result<()> {
-    let iota = iota::ClientBuilder::new()
-        .node("https://nodes.comnet.thetangle.org")?
-        .build()?;
-    let node_info = iota
-        .get_node_info(Url::parse("https://nodes.comnet.thetangle.org").unwrap())
-        .await?;
+    const DEFAULT_NODE_URL: &str = "https://api.lb-0.testnet.chrysalis2.com";
+
+    let node_info = iota_client::Client::get_node_info(DEFAULT_NODE_URL).await.unwrap();
     println!("{:#?}", node_info);
+
     Ok(())
 }

@@ -1,6 +1,11 @@
 # IOTA Rust Workshop
 Simple examples to help a developer work through interacting with the IOTA network.
 
+🚧 Chrysalis part 2! 🚧
+This repository now targets Chrysalis part 2!
+It will have many breaking change along the way. 
+Please use with caution!
+
 ## Getting started
 To start playing with these examples run the following commands:
 
