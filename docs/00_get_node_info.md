@@ -10,23 +10,16 @@ you should see some informations about the connected IOTA node, like this:
 
 **Example Output**
 ```bash
-GetNodeInfoResponse {
-    app_name: "HORNET",
-    app_version: "0.4.0-rc12",
-    jre_available_processors: None,
-    jre_free_memory: None,
-    jre_max_memory: None,
-    jre_total_memory: None,
-    jre_version: None,
-    latest_milestone: "EC9XOVXNBHUHKVPTJGYMKZVEGDH9GYWPFDCBKVTDWIGAOKLISDDMTFOPXFEOJRMZVZCFYPSYUUBOA9999",
-    latest_milestone_index: 1428959,
-    latest_solid_subtangle_milestone: "EC9XOVXNBHUHKVPTJGYMKZVEGDH9GYWPFDCBKVTDWIGAOKLISDDMTFOPXFEOJRMZVZCFYPSYUUBOA9999",
-    latest_solid_subtangle_milestone_index: 1428959,
-    milestone_start_index: 1427599,
-    neighbors: 4,
-    packets_queue_size: None,
-    time: 1590882172000,
-    tips: 0,
-    transactions_to_request: 0,
+NodeInfo {
+    name: "HORNET",
+    version: "0.6.0-alpha",
+    is_healthy: true,
+    network_id: "alphanet1",
+    latest_milestone_index: 86951,
+    solid_milestone_index: 86951,
+    pruning_index: 27200,
+    features: [
+        "PoW",
+    ],
 }
 ```
