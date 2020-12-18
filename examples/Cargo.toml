@@ -6,10 +6,9 @@ edition = "2018"
 
 [dependencies]
 anyhow = "1.0.28"
-iota-core = { git = "https://github.com/iotaledger/iota.rs", branch = "dev"}
-iota-conversion =  "0.5.1"
-smol = {version = "=0.1.18", features = ["tokio02"] }
-smol-potat = "0.3.1"
+iota-core = { git = "https://github.com/iotaledger/iota.rs", branch = "feat/mqtt-optional", default-features = false}
+tokio = { version = "0.2.22", features = ["full"] }
+
 
 [[example]]
 name = "00_get_node_info"
